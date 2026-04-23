@@ -1,0 +1,226 @@
+.page { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.pageHeader { margin-bottom: 0.5rem; }
+.pageTitle  { font-size: 1.6rem; font-weight: 800; }
+.pageSubtitle { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 200px 1fr; gap: 1.5rem; align-items: start; }
+
+/* Tab nav */
+.tabNav {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  position: sticky;
+  top: 116px;
+}
+
+.tabItem {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: left;
+  transition: var(--transition);
+}
+
+.tabItem:hover     { color: var(--foreground); background: var(--background); }
+.tabItemActive     { background: var(--primary); color: white !important; }
+
+/* Panel */
+.panel { padding: 2rem; }
+
+/* Form */
+.form { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.formTitle { font-size: 1.15rem; font-weight: 700; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.formDesc  { font-size: 0.85rem; color: var(--text-muted); margin-top: -0.75rem; }
+
+.avatarRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.storeAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--primary), #FF9A4A);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatarName { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+
+.changeAvatarBtn {
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Field grid */
+.fieldGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.fullCol   { grid-column: 1 / -1; }
+.field     { display: flex; flex-direction: column; gap: 0.35rem; }
+
+.label {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.input, .textarea {
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-family: inherit;
+  transition: var(--transition);
+  width: 100%;
+}
+
+.input:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255,106,0,0.1);
+}
+
+.textarea { resize: vertical; min-height: 80px; }
+
+/* Payout card */
+.payoutCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.payoutIcon  { font-size: 1.75rem; }
+.payoutTitle { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.2rem; }
+.payoutBank  { font-size: 0.95rem; font-weight: 700; }
+.payoutName  { font-size: 0.8rem; color: var(--text-muted); }
+
+.changeBtn {
+  margin-left: auto;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.changeBtn:hover { background: var(--primary); color: white; }
+
+.infoBox {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  background: rgba(255,106,0,0.06);
+  border: 1px solid rgba(255,106,0,0.2);
+  border-radius: var(--radius-md);
+  font-size: 0.83rem;
+  color: var(--foreground);
+}
+
+/* Toggle rows */
+.toggleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+  gap: 1rem;
+}
+
+.toggleRow:last-of-type { border-bottom: none; }
+
+.toggleLabel { font-size: 0.9rem; font-weight: 600; }
+.toggleDesc  { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem; }
+
+.toggle {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  background: var(--border);
+  position: relative;
+  transition: background 0.25s;
+  flex-shrink: 0;
+}
+
+.toggleOn { background: var(--primary); }
+
+.toggleKnob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  transition: transform 0.25s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.toggleOn .toggleKnob { transform: translateX(20px); }
+
+/* Security cards */
+.securityCards { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.secCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  font-size: 1.25rem;
+}
+
+.secCardTitle { font-size: 0.9rem; font-weight: 700; }
+.secCardDesc  { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+.secCard > div { flex: 1; }
+
+/* Footer */
+.formFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+.savedMsg { font-size: 0.85rem; color: #22C55E; font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .layout    { grid-template-columns: 1fr; }
+  .tabNav    { flex-direction: row; position: static; overflow-x: auto; }
+  .fieldGrid { grid-template-columns: 1fr; }
+}

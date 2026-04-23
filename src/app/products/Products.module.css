@@ -1,0 +1,328 @@
+/* ── Page shell ────────────────────────────────────────────────────────────── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4rem;
+}
+
+/* ── Page header banner ──────────────────────────────────────────────────── */
+.pageHeader {
+  background: linear-gradient(135deg, var(--secondary) 0%, #2d2d2d 100%);
+  color: white;
+  padding: 2.5rem 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: #9CA3AF;
+  margin-bottom: 0.75rem;
+}
+
+.breadcrumb a:hover { color: var(--primary); }
+.breadcrumb span    { color: #6B7280; }
+
+.pageTitle {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+.pageSubtitle {
+  font-size: 0.95rem;
+  color: #9CA3AF;
+}
+
+/* ── Search Row ──────────────────────────────────────────────────────────── */
+.searchRow {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.searchBox {
+  position: relative;
+  flex: 1;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.85rem 3rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--foreground);
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 106, 0, 0.12);
+}
+
+.clearSearch {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.filterToggle {
+  display: none;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+/* ── Body (sidebar + product area) ──────────────────────────────────────── */
+.body {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────────────── */
+.sidebar {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: sticky;
+  top: 116px;
+}
+
+.sidebarSection {
+  margin-bottom: 2rem;
+}
+
+.sidebarSection:last-of-type {
+  margin-bottom: 1.5rem;
+}
+
+.sidebarTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.categoryList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.categoryBtn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  color: var(--foreground);
+  transition: var(--transition);
+  text-align: left;
+}
+
+.categoryBtn:hover {
+  background: rgba(255, 106, 0, 0.06);
+  color: var(--primary);
+}
+
+.categoryBtnActive {
+  background: rgba(255, 106, 0, 0.1);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.catCount {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--background);
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+}
+
+/* Price range */
+.priceRange { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.rangeSlider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--primary) 0%, var(--border) 0%);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.rangeSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid white;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.priceLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.priceValue { color: var(--primary); font-weight: 700; }
+
+.resetBtn { width: 100%; margin-top: 0.5rem; }
+
+/* ── Toolbar ──────────────────────────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.sortRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sortLabel { font-size: 0.85rem; color: var(--text-muted); }
+
+.sortSelect {
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--foreground);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.sortSelect:focus { outline: none; border-color: var(--primary); }
+
+.viewToggle { display: flex; gap: 0.25rem; }
+
+.viewBtn {
+  padding: 0.5rem;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  transition: var(--transition);
+}
+
+.viewBtn:hover  { color: var(--foreground); background: var(--background); }
+.viewBtnActive  { color: var(--primary); background: rgba(255, 106, 0, 0.08); }
+
+/* ── Filter chips ─────────────────────────────────────────────────────────── */
+.filterChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  background: rgba(255, 106, 0, 0.1);
+  color: var(--primary);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.chip button { font-size: 0.75rem; color: var(--primary); opacity: 0.7; }
+.chip button:hover { opacity: 1; }
+
+/* ── Product grids ────────────────────────────────────────────────────────── */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.productList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* List-view card overrides */
+.productList > * {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1rem;
+  gap: 1rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.emptyIcon { font-size: 3rem; }
+.empty p   { font-size: 1.05rem; }
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    border-radius: 0;
+    overflow-y: auto;
+    top: 0;
+  }
+
+  .sidebarOpen {
+    display: block;
+  }
+
+  .filterToggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageTitle { font-size: 1.75rem; }
+  .productGrid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+}

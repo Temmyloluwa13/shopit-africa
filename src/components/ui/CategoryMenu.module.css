@@ -1,0 +1,144 @@
+.menuContainer {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  width: 100%;
+  background-color: #1a1d29;
+  border-radius: var(--radius-lg, 8px);
+  padding: 0.5rem 0;
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+  display: flex;
+  flex-direction: column;
+}
+
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categoryItem {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  color: #e5e7eb; /* White-ish text */
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.categoryItem:hover, .categoryItem.active {
+  background-color: rgba(255, 255, 255, 0.05); /* Subtle dark hover */
+  color: #ffffff; /* Pure white */
+}
+
+.icon {
+  margin-right: 0.75rem;
+  font-size: 1.1rem;
+  width: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.label {
+  font-weight: 500;
+}
+
+/* Mega Menu Popout */
+.megaMenu {
+  position: absolute;
+  left: calc(200px + 1rem); /* Side bar width + gap */
+  right: calc(180px + 1rem); /* Right widget width + gap */
+  top: 0;
+  height: 100%;
+  background-color: #1a1d29;
+  border-radius: var(--radius-lg, 8px);
+  box-shadow: 10px 0 25px rgba(0,0,0,0.5);
+  padding: 1.5rem;
+  overflow-y: auto;
+  z-index: 50;
+  animation: slideIn 0.2s ease-out;
+}
+
+/* Invisible bridge so mouse doesn't fall off when moving to mega menu */
+.megaMenu::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0;
+  width: 1rem;
+  height: 100%;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.megaMenuGrid {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-height: 100%;
+  column-gap: 2rem;
+  row-gap: 2rem;
+  align-content: flex-start;
+}
+
+.menuCategoryGroup {
+  min-width: 200px;
+  max-width: 220px;
+  margin-bottom: 0.5rem;
+}
+
+.groupTitle {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.05em;
+}
+
+.groupList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.groupItem {
+  color: #e5e7eb;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.15s ease;
+  display: block;
+}
+
+.groupItem:hover {
+  color: var(--primary, #FF6B00);
+}
+
+@media (max-width: 1024px) {
+  .megaMenu {
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .menuContainer {
+    display: none; /* Hide on mobile by default */
+  }
+}

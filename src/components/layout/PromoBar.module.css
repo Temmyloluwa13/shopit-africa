@@ -1,0 +1,93 @@
+.promoBar {
+  background: var(--secondary);
+  color: white;
+  display: flex;
+  align-items: center;
+  height: 36px;
+  overflow: hidden;
+  position: relative;
+  z-index: 40;
+}
+
+/* Marquee */
+.marqueeWrapper {
+  flex: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.marquee:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.promoItem {
+  white-space: nowrap;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0 1.5rem;
+  color: #E5E7EB;
+}
+
+.separator {
+  margin-left: 1.5rem;
+  opacity: 0.4;
+}
+
+/* Right side */
+.promoRight {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 1.25rem;
+  flex-shrink: 0;
+  border-left: 1px solid rgba(255,255,255,0.1);
+}
+
+.liveBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--primary);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: white;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
+
+.phoneLink {
+  font-size: 0.78rem;
+  color: #D1D5DB;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.phoneLink:hover { color: var(--primary); }
+.phoneLink strong { color: white; }
+
+@media (max-width: 768px) {
+  .promoRight { display: none; }
+}

@@ -1,0 +1,272 @@
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Hero 3-column layout ─────────────────────────────────────────────────── */
+.heroSectionWrapper {
+  display: grid;
+  grid-template-columns: 200px 1fr 180px;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  margin-bottom: 2rem;
+  min-height: 400px;
+  align-items: stretch;
+  position: relative;
+}
+
+.heroBanner {
+  position: relative;
+  background-color: var(--secondary);
+  color: white;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 2.5rem;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 10;
+  max-width: 500px;
+}
+
+.heroContent h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+}
+
+.heroContent h1 span { color: var(--primary); }
+
+.heroContent p {
+  font-size: 1rem;
+  color: #E5E7EB;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.heroBtns {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* ── Right widgets ────────────────────────────────────────────────────────── */
+.heroWidgets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: var(--transition);
+  flex: 1;
+}
+
+.widget:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(-2px);
+}
+
+.widgetIcon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+
+.widgetTitle { font-size: 0.82rem; font-weight: 700; margin-bottom: 0.1rem; }
+.widgetSub   { font-size: 0.78rem; color: var(--primary); font-weight: 600; }
+.widgetMeta  { font-size: 0.7rem;  color: var(--text-muted); margin-top: 0.15rem; }
+
+/* Vendor Force */
+.vendorForce {
+  background: linear-gradient(135deg, var(--secondary) 0%, #2d2d2d 100%) !important;
+  color: white !important;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-color: transparent !important;
+}
+
+.vendorForce:hover { transform: translateX(-2px) translateY(-2px) !important; }
+
+.vendorForceHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.vendorForceLogo { color: white; font-size: 0.85rem; letter-spacing: 0.02em; }
+.vendorForceLogo strong { color: var(--primary); }
+
+.vendorForceSub { font-size: 0.72rem; color: #9CA3AF; line-height: 1.35; }
+
+.vendorForceBtn {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius-md);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  margin-top: 0.2rem;
+  transition: background 0.2s;
+}
+
+.vendorForceBtn:hover { background: var(--primary-hover); }
+
+/* ── Shared section ───────────────────────────────────────────────────────── */
+.section { padding: 2.5rem 0; }
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.sectionHeader h2 { font-size: 1.6rem; font-weight: 700; }
+
+.viewAll { color: var(--primary); font-weight: 600; font-size: 0.9rem; }
+.viewAll:hover { text-decoration: underline; }
+
+/* ── Flash Sales box ──────────────────────────────────────────────────────── */
+.flashSalesBox {
+  background: linear-gradient(135deg, #FFF5F0 0%, #FFF0E8 100%);
+  border: 1px solid #FFD5B8;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+}
+
+.flashHeadLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.flashIcon { font-size: 1.5rem; }
+
+.flashHeadLeft h2 { font-size: 1.5rem; font-weight: 700; }
+
+/* Live countdown */
+.countdown {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  background: var(--secondary);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-md);
+}
+
+.countUnit {
+  min-width: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 800;
+  color: white;
+  font-variant-numeric: tabular-nums;
+}
+
+.countColon {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 1rem;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ── Category grid ────────────────────────────────────────────────────────── */
+.categoryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+}
+
+.categoryCard {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+.categoryCard:hover {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  color: var(--primary);
+}
+
+.categoryCard span {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.categoryCard p { font-weight: 600; font-size: 0.88rem; }
+
+/* ── Product grid ─────────────────────────────────────────────────────────── */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ── Vendor banner ────────────────────────────────────────────────────────── */
+.vendorBanner {
+  background: linear-gradient(135deg, var(--secondary) 0%, #2d2d2d 100%);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.vendorBannerContent { color: white; max-width: 600px; }
+.vendorBannerContent h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+.vendorBannerContent p {
+  color: #9CA3AF;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.vendorBannerEmoji { font-size: 6rem; opacity: 0.15; flex-shrink: 0; }
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .heroSectionWrapper { grid-template-columns: 200px 1fr; }
+  .heroWidgets        { display: none; }
+}
+
+@media (max-width: 768px) {
+  .heroSectionWrapper { grid-template-columns: 1fr; }
+  .heroContent h1     { font-size: 2rem; }
+  .vendorBanner       { padding: 2rem; }
+  .vendorBannerContent h2 { font-size: 1.5rem; }
+  .vendorBannerEmoji  { display: none; }
+  .productGrid        { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; }
+}

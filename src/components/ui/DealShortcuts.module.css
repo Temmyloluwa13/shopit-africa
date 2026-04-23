@@ -1,0 +1,73 @@
+.wrapper {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0.75rem 0;
+}
+
+.track {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-top: 10px;
+  padding-bottom: 4px;
+}
+
+.track::-webkit-scrollbar { display: none; }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: transform 0.2s ease;
+  min-width: 80px;
+}
+
+.card:hover { transform: translateY(-3px); }
+
+.iconBox {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover .iconBox {
+  box-shadow: var(--shadow-md);
+}
+
+.emoji { font-size: 1.75rem; }
+
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: var(--primary);
+  color: white;
+  font-size: 0.55rem;
+  font-weight: 800;
+  padding: 0.15rem 0.35rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--surface);
+}
+
+.label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--foreground);
+  line-height: 1.2;
+  max-width: 72px;
+}

@@ -1,0 +1,135 @@
+.main { flex: 1; padding: 2.5rem 0 5rem; }
+
+/* Header */
+.pageHeader   { margin-bottom: 2rem; text-align: center; }
+.pageTitle    { font-size: 2.2rem; font-weight: 800; }
+.pageSubtitle { font-size: 1rem; color: var(--text-muted); margin-top: 0.4rem; }
+
+/* Category grid */
+.catGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.catCard {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.catCard:hover {
+  border-color: var(--cat-color);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.catCardActive {
+  border-color: var(--cat-color) !important;
+  background: var(--cat-bg);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--cat-color) 15%, transparent);
+}
+
+.catIconBox {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--cat-bg, #F3F4F6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s;
+}
+
+.catCard:hover .catIconBox { transform: scale(1.1) rotate(-5deg); }
+
+.catIcon  { font-size: 1.8rem; }
+.catName  { font-size: 0.9rem; font-weight: 700; color: var(--foreground); }
+.catCount { font-size: 0.72rem; color: var(--text-muted); }
+
+/* Expanded panel */
+.expandedPanel {
+  background: var(--cat-bg, var(--surface));
+  border: 2px solid color-mix(in srgb, var(--cat-color) 30%, transparent);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.expandedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.expandedTitle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.expandedIcon { font-size: 2.5rem; }
+
+.expandedTitle h2 { font-size: 1.5rem; font-weight: 800; color: var(--cat-color); }
+.expandedTitle p  { font-size: 0.82rem; color: var(--text-muted); margin-top: 0.1rem; }
+
+/* Subcategory chips */
+.subcatRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.subcatChip {
+  padding: 0.4rem 1rem;
+  border: 1.5px solid color-mix(in srgb, var(--cat-color) 40%, transparent);
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--cat-color);
+  background: white;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.subcatChip:hover {
+  background: var(--cat-color);
+  color: white;
+  border-color: var(--cat-color);
+}
+
+/* Sample products */
+.sampleTitle { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+
+.sampleGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .catGrid   { grid-template-columns: repeat(3, 1fr); }
+  .catCard   { padding: 1rem 0.5rem; }
+  .catIconBox { width: 48px; height: 48px; }
+  .catIcon   { font-size: 1.4rem; }
+}

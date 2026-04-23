@@ -1,0 +1,167 @@
+.main {
+  background-color: var(--background, #f9fafb);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  background-color: var(--surface, #ffffff);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg, 0 10px 25px rgba(0,0,0,0.05));
+  border: 1px solid var(--border, #E5E7EB);
+}
+
+.leftPanel {
+  flex: 1;
+  background-color: var(--secondary, #1B1E2B);
+  color: white;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leftContent h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.leftContent h1 span {
+  color: var(--primary, #FF6B00);
+}
+
+.leftContent > p {
+  font-size: 1.1rem;
+  color: #A1A1AA;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.benefitsList li {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.benefitsList .icon {
+  font-size: 2rem;
+  background-color: rgba(255, 107, 0, 0.1);
+  padding: 1rem;
+  border-radius: var(--radius-md, 8px);
+}
+
+.benefitsList h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.benefitsList p {
+  color: #A1A1AA;
+  line-height: 1.5;
+}
+
+.rightPanel {
+  flex: 1;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formCard h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary, #111827);
+}
+
+.subtitle {
+  color: var(--text-secondary, #4B5563);
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-weight: 600;
+  color: var(--text-primary, #111827);
+  font-size: 0.95rem;
+}
+
+.inputGroup input, .inputGroup select {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border, #E5E7EB);
+  border-radius: var(--radius-md, 6px);
+  background-color: var(--background, #f9fafb);
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.2s;
+  color: var(--text-primary, #111827);
+}
+
+.inputGroup input:focus, .inputGroup select:focus {
+  border-color: var(--primary, #FF6B00);
+  background-color: var(--surface, #ffffff);
+  box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+.submitBtn {
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.loginLink {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-secondary, #4B5563);
+  font-weight: 500;
+}
+
+.loginLink a {
+  color: var(--primary, #FF6B00);
+}
+
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+  }
+  .leftPanel {
+    padding: 3rem 2rem;
+  }
+  .rightPanel {
+    padding: 3rem 2rem;
+  }
+}

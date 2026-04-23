@@ -1,0 +1,244 @@
+.dashboardContainer {
+  display: flex;
+  height: 100vh;
+  background-color: var(--background, #f9fafb);
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 260px;
+  background-color: var(--surface, #ffffff);
+  border-right: 1px solid var(--border, #E5E7EB);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarHeader {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border, #E5E7EB);
+}
+
+.sidebarHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary, #111827);
+}
+
+.sidebarHeader h2 span {
+  color: var(--primary, #FF6B00);
+}
+
+.sidebarNav {
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  color: var(--text-secondary, #4B5563);
+  font-weight: 500;
+  border-radius: var(--radius-md, 6px);
+  transition: all 0.2s;
+}
+
+.navItem:hover {
+  background-color: rgba(255, 107, 0, 0.05);
+  color: var(--primary, #FF6B00);
+}
+
+.navItem.active {
+  background-color: var(--primary, #FF6B00);
+  color: white;
+}
+
+.icon {
+  font-size: 1.2rem;
+}
+
+.sidebarFooter {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border, #E5E7EB);
+}
+
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: none;
+  border: none;
+  color: #EF4444;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: var(--radius-md, 6px);
+  transition: all 0.2s;
+}
+
+.logoutBtn:hover {
+  background-color: #FEF2F2;
+}
+
+.mainArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background-color: var(--surface, #ffffff);
+  border-bottom: 1px solid var(--border, #E5E7EB);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.breadcrumb {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--text-primary, #111827);
+}
+
+.topbarActions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.visitStoreBtn {
+  font-weight: 600;
+  color: var(--text-secondary, #4B5563);
+}
+
+.visitStoreBtn:hover {
+  color: var(--primary, #FF6B00);
+  text-decoration: underline;
+}
+
+.vendorProfile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+}
+
+.avatar {
+  background-color: var(--primary, #FF6B00);
+  color: white;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.content {
+  padding: 3rem;
+  flex: 1;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.statCard {
+  background-color: var(--surface, #ffffff);
+  padding: 2rem;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border, #E5E7EB);
+  box-shadow: var(--shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+}
+
+.statCard h3 {
+  font-size: 1rem;
+  color: var(--text-secondary, #4B5563);
+  margin-bottom: 0.5rem;
+}
+
+.statValue {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary, #111827);
+  margin-bottom: 0.5rem;
+}
+
+.statChange {
+  font-size: 0.9rem;
+  color: #10B981; /* Green success */
+  font-weight: 500;
+}
+
+.recentOrders {
+  background-color: var(--surface, #ffffff);
+  padding: 2rem;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border, #E5E7EB);
+}
+
+.recentOrders h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid var(--border, #E5E7EB);
+  color: var(--text-secondary, #4B5563);
+  font-weight: 600;
+}
+
+.table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border, #E5E7EB);
+  font-weight: 500;
+}
+
+.badgePending {
+  background-color: #FEF3C7;
+  color: #D97706;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badgeShipped {
+  background-color: #DBEAFE;
+  color: #2563EB;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.badgeDelivered {
+  background-color: #D1FAE5;
+  color: #059669;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
