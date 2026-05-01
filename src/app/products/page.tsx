@@ -32,7 +32,7 @@ export default function ProductsPage() {
   const [category, setCategory]     = useState('All');
   const [sort, setSort]             = useState('newest');
   const [viewMode, setViewMode]     = useState<'grid' | 'list'>('grid');
-  const [priceMax, setPriceMax]     = useState(100000);
+  const [priceMax, setPriceMax]     = useState(1000000);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const filtered = useMemo(() => {
@@ -141,7 +141,7 @@ export default function ProductsPage() {
                   id="price-range"
                   type="range"
                   min={1000}
-                  max={100000}
+                  max={1000000}
                   step={500}
                   value={priceMax}
                   onChange={e => setPriceMax(Number(e.target.value))}
