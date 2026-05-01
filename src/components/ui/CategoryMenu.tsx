@@ -608,7 +608,7 @@ export default function CategoryMenu() {
                 <ul className={styles.groupList}>
                   {group.items.map((item, idx) => (
                     <li key={idx}>
-                      <a href={`/category/${item.toLowerCase().replace(/ /g, '-')}`} className={styles.groupItem}>
+                      <a href={`/products?category=${encodeURIComponent(item)}`} className={styles.groupItem}>
                         {item}
                       </a>
                     </li>
