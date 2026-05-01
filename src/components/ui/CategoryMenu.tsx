@@ -4,7 +4,7 @@ import styles from './CategoryMenu.module.css';
 import { useState } from 'react';
 
 // Mock data structured directly from the provided image
-const CATEGORIES = [
+export const CATEGORIES = [
   { id: 'official-store', icon: '⭐', label: 'Official Store', subcategories: null },
   { 
     id: 'appliances', 

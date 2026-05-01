@@ -11,7 +11,15 @@ import { MOCK_PRODUCTS } from '@/data/mockProducts';
 
 const ALL_PRODUCTS: Product[] = MOCK_PRODUCTS;
 
-const CATEGORIES = ['All', 'Appliances', 'Phones & Tablets', 'Electronics', 'Computing', 'Fashion', 'Health & Beauty', 'Home & Office', 'Supermarket', 'Baby Products', 'Gaming'];
+import { CATEGORIES as MAIN_CATEGORIES } from '@/components/ui/CategoryMenu';
+
+const SIDEBAR_CATEGORIES = ['All', ...MAIN_CATEGORIES.filter(c => c.id !== 'official-store' && c.id !== 'other').map(c => c.label)];
+
+const getSubcategories = (label: string) => {
+  const main = MAIN_CATEGORIES.find(c => c.label === label);
+  if (!main || !main.subcategories) return [];
+  return main.subcategories.flatMap(g => g.items);
+};
 const SORT_OPTIONS = [
   { label: 'Newest',        value: 'newest' },
   { label: 'Price: Low–High', value: 'price_asc' },
@@ -33,8 +41,14 @@ export default function ProductsPage() {
     if (search.trim())
       result = result.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
 
-    if (category !== 'All')
-      result = result.filter(p => p.category === category);
+    if (category !== 'All') {
+      if (SIDEBAR_CATEGORIES.includes(category)) {
+        const subcats = getSubcategories(category);
+        result = result.filter(p => subcats.includes(p.category));
+      } else {
+        result = result.filter(p => p.category === category);
+      }
+    }
 
     result = result.filter(p => p.price <= priceMax);
 
@@ -101,7 +115,7 @@ export default function ProductsPage() {
             <div className={styles.sidebarSection}>
               <h3 className={styles.sidebarTitle}>Categories</h3>
               <ul className={styles.categoryList}>
-                {CATEGORIES.map(cat => (
+                {SIDEBAR_CATEGORIES.map(cat => (
                   <li key={cat}>
                     <button
                       id={`cat-${cat.replace(/\s+/g, '-').toLowerCase()}`}
@@ -110,7 +124,9 @@ export default function ProductsPage() {
                     >
                       {cat}
                       <span className={styles.catCount}>
-                        {cat === 'All' ? ALL_PRODUCTS.length : ALL_PRODUCTS.filter(p => p.category === cat).length}
+                        {cat === 'All' 
+                          ? ALL_PRODUCTS.length 
+                          : ALL_PRODUCTS.filter(p => getSubcategories(cat).includes(p.category)).length}
                       </span>
                     </button>
                   </li>
