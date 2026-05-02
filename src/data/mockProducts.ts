@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Product } from '@/components/ui/ProductCard';
 
-export const MOCK_PRODUCTS: Product[
+export const MOCK_PRODUCTS: Product[] = [
   {
     "id": "prod_1",
     "name": "Zara Smart Blenders X9415",
