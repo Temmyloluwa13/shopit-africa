@@ -22,11 +22,35 @@ export default function SignupPage() {
   const strengthLabel = ['', 'Weak', 'Fair', 'Good', 'Strong'];
   const strengthColor = ['', '#EF4444', '#F59E0B', '#3B82F6', '#22C55E'];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [error, setError] = useState('');
+  const router = import('next/navigation').then(m => m.useRouter); // wait, I can just import it at top
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!agreed) return;
     setLoading(true);
-    setTimeout(() => setLoading(false), 1500);
+    setError('');
+
+    try {
+      const res = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        // Registration successful, redirect to verification
+        window.location.href = `/verify-email?email=${encodeURIComponent(email)}`;
+      } else {
+        setError(data.error || 'Registration failed');
+        setLoading(false);
+      }
+    } catch (err) {
+      setError('An unexpected error occurred. Please try again.');
+      setLoading(false);
+    }
   };
 
   return (
@@ -60,6 +84,7 @@ export default function SignupPage() {
           <p className={styles.formSubtitle}>It takes less than a minute to get started</p>
 
           <form onSubmit={handleSubmit} className={styles.form} noValidate>
+            {error && <div style={{ color: '#EF4444', marginBottom: '1rem', fontSize: '0.9rem', fontWeight: 500 }}>{error}</div>}
             <div className={styles.field}>
               <label htmlFor="signup-name" className={styles.label}>Full name</label>
               <input

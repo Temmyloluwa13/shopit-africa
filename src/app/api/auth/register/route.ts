@@ -20,31 +20,39 @@ export async function POST(request: Request) {
     // Hash password
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // Create user in Supabase
+    // Create user in Supabase with isVerified: false
     const newUser = await prisma.user.create({
-      data: { email, passwordHash, name, role },
+      data: { email, passwordHash, name, role, isVerified: false },
     });
 
-    // Sign JWT
-    const token = signToken({ userId: newUser.id, email: newUser.email, role: newUser.role });
+    // Generate a random 4-digit code
+    const code = Math.floor(1000 + Math.random() * 9000).toString();
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000); // 15 minutes from now
 
-    const response = NextResponse.json({
-      message: 'User registered successfully',
-      user: { id: newUser.id, email: newUser.email, name: newUser.name, role: newUser.role },
-      token,
+    // Save the verification code
+    await prisma.verificationCode.create({
+      data: {
+        code,
+        expiresAt,
+        userId: newUser.id,
+      },
+    });
+
+    // Mock sending an email
+    console.log(`\n======================================================`);
+    console.log(`📧 MOCK EMAIL DISPATCH`);
+    console.log(`To: ${newUser.email}`);
+    console.log(`Subject: Verify your Shopit Africa email`);
+    console.log(`Body: Your verification code is ${code}`);
+    console.log(`======================================================\n`);
+
+    return NextResponse.json({
+      message: 'Verification code sent',
+      requireVerification: true,
+      email: newUser.email,
     }, { status: 201 });
 
-    // Also set token as an HTTP-only cookie for web clients
-    response.cookies.set('token', token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
-      path: '/',
-    });
-
-    return response;
-  } catch (error) {
+    } catch (error) {
     console.error('Register error:', error);
     return NextResponse.json({ error: 'Failed to register user' }, { status: 500 });
   }

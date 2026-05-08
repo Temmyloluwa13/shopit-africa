@@ -7,7 +7,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
 }
 
 model User {
@@ -16,10 +16,22 @@ model User {
   email         String         @unique
   passwordHash  String
   role          String         @default("CUSTOMER")
+  isVerified    Boolean        @default(false)
   createdAt     DateTime       @default(now())
   
   vendorProfile VendorProfile?
   orders        Order[]
+  verificationCode VerificationCode?
+}
+
+model VerificationCode {
+  id        String   @id @default(uuid())
+  code      String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @unique
 }
 
 model VendorProfile {
