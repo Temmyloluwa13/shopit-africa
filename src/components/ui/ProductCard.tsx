@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useCart } from '@/contexts/CartContext';
 import styles from './ProductCard.module.css';
 
 export interface Product {
@@ -18,9 +21,24 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { cartItems, addToCart, updateQuantity, removeFromCart } = useCart();
+  
   const discount = product.originalPrice
     ? Math.round((1 - product.price / product.originalPrice) * 100)
     : null;
+
+  const cartItem = cartItems.find(item => item.id === product.id);
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category,
+      vendor: 'Shopit Africa' // Default vendor since Product doesn't have it
+    });
+  };
 
   return (
     <div className={`card ${styles.card}`}>
@@ -70,9 +88,33 @@ export default function ProductCard({ product }: ProductCardProps) {
               <span className={styles.originalPrice}>₦{product.originalPrice.toLocaleString()}</span>
             )}
           </div>
-          <button className={styles.addToCart} aria-label="Add to cart">
-            +
-          </button>
+          {cartItem ? (
+            <div className={styles.qtyControl}>
+              <button 
+                className={styles.qtyBtn} 
+                onClick={() => updateQuantity(product.id, cartItem.qty - 1)}
+                aria-label="Decrease quantity"
+              >
+                −
+              </button>
+              <span className={styles.qtyValue}>{cartItem.qty}</span>
+              <button 
+                className={styles.qtyBtn} 
+                onClick={() => updateQuantity(product.id, cartItem.qty + 1)}
+                aria-label="Increase quantity"
+              >
+                +
+              </button>
+            </div>
+          ) : (
+            <button 
+              className={styles.addToCart} 
+              aria-label="Add to cart"
+              onClick={handleAddToCart}
+            >
+              +
+            </button>
+          )}
         </div>
       </div>
     </div>

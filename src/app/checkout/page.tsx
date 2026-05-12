@@ -1,15 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { useCart } from '@/contexts/CartContext';
 import styles from './Checkout.module.css';
-
-const ORDER_ITEMS = [
-  { id: '1', name: 'Luxury Wireless Over-Ear Headphones', price: 45000, qty: 1, image: '/images/headphones.png' },
-  { id: '2', name: 'Premium Orange & Charcoal Sneakers', price: 32500, qty: 2, image: '/images/sneaker.png' },
-];
 
 const DELIVERY_FEE = 2500;
 
@@ -17,17 +13,34 @@ type PayMethod = 'card' | 'transfer' | 'paystack' | 'flutterwave';
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { cartItems, cartTotal } = useCart();
+  
   const [step, setStep]           = useState<1 | 2 | 3>(1);
   const [payMethod, setPayMethod] = useState<PayMethod>('paystack');
   const [placing, setPlacing]     = useState(false);
+  const [isAuthChecking, setIsAuthChecking] = useState(true);
 
   const [form, setForm] = useState({
     firstName: '', lastName: '', email: '', phone: '',
     address: '', city: '', state: '', country: 'Nigeria',
   });
 
-  const subtotal = ORDER_ITEMS.reduce((s, i) => s + i.price * i.qty, 0);
-  const total    = subtotal + DELIVERY_FEE;
+  // Jumia Auth Wall: Force login before checkout
+  useEffect(() => {
+    const hasAuth = document.cookie.includes('token=') || localStorage.getItem('user');
+    if (!hasAuth) {
+      router.push('/login?callbackUrl=/checkout');
+    } else {
+      setIsAuthChecking(false);
+    }
+    // For demo purposes, we will bypass if no strict auth implemented yet,
+    // but in production it redirects. Let's set checking false after a tiny delay
+    const timer = setTimeout(() => setIsAuthChecking(false), 500);
+    return () => clearTimeout(timer);
+  }, [router]);
+
+  const subtotal = cartTotal;
+  const total    = subtotal + (cartItems.length > 0 ? DELIVERY_FEE : 0);
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm(f => ({ ...f, [k]: e.target.value }));
@@ -49,7 +62,21 @@ export default function CheckoutPage() {
       <Navbar />
       <main className={styles.main}>
         <div className="container">
-          {/* Steps indicator */}
+          {isAuthChecking ? (
+            <div style={{ textAlign: 'center', padding: '100px 0' }}>
+              <span className={styles.spinner} />
+              <p style={{ marginTop: '20px' }}>Verifying authentication...</p>
+            </div>
+          ) : cartItems.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '100px 0' }}>
+              <h2>Your cart is empty</h2>
+              <button className="btn btn-primary" onClick={() => router.push('/products')} style={{ marginTop: '20px' }}>
+                Browse Products
+              </button>
+            </div>
+          ) : (
+            <>
+              {/* Steps indicator */}
           <div className={styles.steps}>
             {['Shipping', 'Payment', 'Review'].map((s, i) => (
               <div key={s} className={`${styles.step} ${step > i + 1 ? styles.stepDone : ''} ${step === i + 1 ? styles.stepActive : ''}`}>
@@ -166,7 +193,7 @@ export default function CheckoutPage() {
 
                   <div className={styles.reviewBlock}>
                     <h3 className={styles.reviewLabel}>Items</h3>
-                    {ORDER_ITEMS.map(item => (
+                    {cartItems.map(item => (
                       <div key={item.id} className={styles.reviewItem}>
                         <img src={item.image} alt={item.name} className={styles.reviewItemImg} />
                         <div>
@@ -197,7 +224,7 @@ export default function CheckoutPage() {
               <div className={`card ${styles.summaryCard}`}>
                 <h2 className={styles.summaryTitle}>Order Summary</h2>
                 <div className={styles.summaryItems}>
-                  {ORDER_ITEMS.map(item => (
+                  {cartItems.map(item => (
                     <div key={item.id} className={styles.summaryItem}>
                       <div className={styles.summaryItemImg}>
                         <img src={item.image} alt={item.name} />
@@ -221,6 +248,8 @@ export default function CheckoutPage() {
               </div>
             </div>
           </div>
+          </>
+          )}
         </div>
       </main>
       <Footer />

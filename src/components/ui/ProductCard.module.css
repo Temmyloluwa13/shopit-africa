@@ -170,3 +170,39 @@
   background-color: var(--primary-hover);
   transform: scale(1.12) rotate(90deg);
 }
+
+.qtyControl {
+  display: flex;
+  align-items: center;
+  background-color: #F3F4F6;
+  border-radius: 20px;
+  height: 2.25rem;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.qtyBtn {
+  width: 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  background: transparent;
+  transition: all 0.2s ease;
+}
+
+.qtyBtn:hover {
+  background-color: #E5E7EB;
+  color: var(--primary);
+}
+
+.qtyValue {
+  min-width: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}

@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import PromoBar from './PromoBar';
+import { useCart } from '@/contexts/CartContext';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
+  const { cartCount } = useCart();
+
   return (
     <>
       <PromoBar />
@@ -121,7 +124,7 @@ export default function Navbar() {
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
               </svg>
               Cart
-              <span className={styles.cartBadge}>0</span>
+              {cartCount > 0 && <span className={styles.cartBadge}>{cartCount}</span>}
             </Link>
           </div>
         </div>

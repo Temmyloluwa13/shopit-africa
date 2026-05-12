@@ -4,54 +4,17 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { useCart } from '@/contexts/CartContext';
 import styles from './Cart.module.css';
-
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-  category: string;
-  qty: number;
-  vendor: string;
-}
-
-const INITIAL_CART: CartItem[] = [
-  {
-    id: '1',
-    name: 'Luxury Wireless Over-Ear Headphones, Soft Gold Accent',
-    price: 45000,
-    image: '/images/headphones.png',
-    category: 'Electronics',
-    qty: 1,
-    vendor: 'AudioLux Africa',
-  },
-  {
-    id: '2',
-    name: 'Premium Vibrant Orange & Charcoal Sneakers',
-    price: 32500,
-    image: '/images/sneaker.png',
-    category: 'Fashion',
-    qty: 2,
-    vendor: 'StreetKix NG',
-  },
-];
 
 const DELIVERY_FEE = 2500;
 const PROMO_CODES: Record<string, number> = { 'SHOPIT10': 10, 'AFRICA20': 20 };
 
 export default function CartPage() {
-  const [items, setItems] = useState<CartItem[]>(INITIAL_CART);
+  const { cartItems: items, updateQuantity: updateQty, removeFromCart: removeItem } = useCart();
   const [promoCode, setPromoCode] = useState('');
   const [appliedPromo, setAppliedPromo] = useState<string | null>(null);
   const [promoError, setPromoError] = useState('');
-
-  const updateQty = (id: string, qty: number) => {
-    if (qty < 1) return;
-    setItems(prev => prev.map(item => item.id === id ? { ...item, qty } : item));
-  };
-
-  const removeItem = (id: string) => setItems(prev => prev.filter(item => item.id !== id));
 
   const subtotal    = items.reduce((sum, item) => sum + item.price * item.qty, 0);
   const discount    = appliedPromo ? Math.round(subtotal * (PROMO_CODES[appliedPromo] / 100)) : 0;
