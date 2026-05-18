@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import { prisma } from '@/lib/prisma';
 import { signToken } from '@/lib/auth';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
@@ -38,13 +41,22 @@ export async function POST(request: Request) {
       },
     });
 
-    // Mock sending an email
-    console.log(`\n======================================================`);
-    console.log(`📧 MOCK EMAIL DISPATCH`);
-    console.log(`To: ${newUser.email}`);
-    console.log(`Subject: Verify your Shopit Africa email`);
-    console.log(`Body: Your verification code is ${code}`);
-    console.log(`======================================================\n`);
+    // Send real email via Resend
+    await resend.emails.send({
+      from: 'Shopit Africa <onboarding@resend.dev>',
+      to: newUser.email,
+      subject: 'Verify your Shopit Africa email',
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2>Welcome to Shopit Africa, ${newUser.name}!</h2>
+          <p>Thank you for creating an account. Please verify your email address using the code below:</p>
+          <div style="background-color: #f4f4f4; padding: 15px; font-size: 24px; font-weight: bold; letter-spacing: 5px; text-align: center; margin: 20px 0;">
+            ${code}
+          </div>
+          <p>This code will expire in 15 minutes.</p>
+        </div>
+      `
+    });
 
     return NextResponse.json({
       message: 'Verification code sent',

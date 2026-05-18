@@ -39,8 +39,11 @@ export default function Navbar() {
               </button>
               <div className={styles.dropdownMenu}>
                 <div className={styles.dropdownHeader}>
-                  <Link href="/login" className="btn btn-primary" style={{ display: 'block', textAlign: 'center', width: '100%', color: 'white', fontWeight: 600 }}>
+                  <Link href="/login" className="btn btn-primary" style={{ display: 'block', textAlign: 'center', width: '100%', color: 'white', fontWeight: 600, marginBottom: '0.5rem' }}>
                     Sign In
+                  </Link>
+                  <Link href="/signup" style={{ display: 'block', textAlign: 'center', fontSize: '0.9rem', color: 'var(--primary)', fontWeight: 500 }}>
+                    Create Account
                   </Link>
                 </div>
                 <ul className={styles.dropdownList}>

@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
@@ -44,13 +47,22 @@ export async function POST(request: Request) {
       });
     }
 
-    // Mock sending an email
-    console.log(`\n======================================================`);
-    console.log(`📧 MOCK EMAIL DISPATCH (RESEND)`);
-    console.log(`To: ${user.email}`);
-    console.log(`Subject: Your new Shopit Africa verification code`);
-    console.log(`Body: Your new verification code is ${code}`);
-    console.log(`======================================================\n`);
+    // Send real email via Resend
+    await resend.emails.send({
+      from: 'Shopit Africa <onboarding@resend.dev>',
+      to: user.email,
+      subject: 'Your new Shopit Africa verification code',
+      html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2>Hello!</h2>
+          <p>You requested a new verification code for your Shopit Africa account. Please use the code below:</p>
+          <div style="background-color: #f4f4f4; padding: 15px; font-size: 24px; font-weight: bold; letter-spacing: 5px; text-align: center; margin: 20px 0;">
+            ${code}
+          </div>
+          <p>This code will expire in 15 minutes.</p>
+        </div>
+      `
+    });
 
     return NextResponse.json({
       message: 'Verification code resent successfully',

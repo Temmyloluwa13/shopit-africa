@@ -1,0 +1,1 @@
+const fs = require('fs'); const content = fs.readFileSync('src/data/mockProducts.ts', 'utf8'); const cats = [...new Set([...content.matchAll(/category:"([^"]+)"/g)].map(m => m[1]))]; console.log(cats);
